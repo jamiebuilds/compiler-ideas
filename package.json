@@ -1,0 +1,15 @@
+{
+  "name": "babel-next",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/thejameskyle/babel-next",
+  "author": "James Kyle <me@thejameskyle.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.57.3",
+    "jest": "^21.2.1"
+  }
+}
