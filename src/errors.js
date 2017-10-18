@@ -6,7 +6,7 @@ export function buildCodeFrame(path: Path, message: string): string {
   return '';
 }
 
-export class BabelError extends Error {
+export class CompilerError extends Error {
   path: Path | null;
 
   constructor(
@@ -21,5 +21,5 @@ export class BabelError extends Error {
   }
 }
 
-export class BabelSyntaxError extends BabelError {}
-export class BabelTypeError extends BabelError {}
+export class CompilerSyntaxError extends CompilerError {}
+export class CompilerTypeError extends CompilerError {}

@@ -1,8 +1,8 @@
 {
-  "name": "babel-next",
+  "name": "@compiler/core",
   "version": "0.0.0",
   "main": "index.js",
-  "repository": "https://github.com/thejameskyle/babel-next",
+  "repository": "https://github.com/thejameskyle/compiler",
   "author": "James Kyle <me@thejameskyle.com>",
   "license": "MIT",
   "scripts": {

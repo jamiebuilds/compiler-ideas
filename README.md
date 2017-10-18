@@ -1,4 +1,4 @@
-# Babel "Next" API Playground
+# Compiler API Playground
 
 See examples in `examples/`.
 
@@ -32,12 +32,12 @@ See examples in `examples/`.
 - Better/Faster code generation
 
 ```js
-// babel.js
-import { transform, merge } from '@babel/next';
-import flow from '@babel/flow';
-import react from '@babel/react';
-import classProperties from '@babel/class-properties';
-import pipelineOperator from '@babel/pipeline-operator'
+// compiler-config.js
+import { transform, merge } from '@compiler/core';
+import flow from '@compiler/flow';
+import react from '@compiler/react';
+import classProperties from '@compiler/class-properties';
+import pipelineOperator from '@compiler/pipeline-operator'
 
 const transformer = merge(
   flow,

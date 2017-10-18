@@ -1,6 +1,6 @@
 // @flow
 import type { ASTNode } from './types';
-import { BabelTypeError } from './errors';
+import { CompilerTypeError } from './errors';
 import Path from './path';
 import messages from './messages';
 
@@ -11,11 +11,11 @@ export default function reduce<Context: {}, Result>(
 ): Result {
   function cb(path: Path, context: $Shape<Context>) {
     if (!(path instanceof Path)) {
-      throw new BabelTypeError(messages.needsPath, path);
+      throw new CompilerTypeError(messages.needsPath, path);
     }
 
     if (typeof context === 'undefined') {
-      throw new BabelTypeError(messages.needsContext, path);
+      throw new CompilerTypeError(messages.needsContext, path);
     }
 
     return reducer(path, context, cb);

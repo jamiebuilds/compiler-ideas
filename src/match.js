@@ -1,6 +1,6 @@
 // @flow
 import type { ASTNode } from './types';
-import { BabelError } from './errors';
+import { CompilerError } from './errors';
 import messages from './messages';
 
 type Matcher<Result> = {
@@ -15,7 +15,7 @@ export default function match<Result>(nodeType: string, matcher: Matcher<Result>
   } else if (matcher.else) {
     method = matcher.else;
   } else {
-    throw new BabelError(messages.missingMatchMethod(nodeType));
+    throw new CompilerError(messages.missingMatchMethod(nodeType));
   }
 
   return method();
