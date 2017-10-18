@@ -1,12 +1,15 @@
 // @flow
-import type { ASTNode, Transformer } from './types';
+import type { ASTNode } from './types';
 import Path from './path';
 import Stack from './stack';
 import Queue from './queue';
 
 export default async function transform<Context: {}>(
   ast: ASTNode,
-  transformer: Transformer<Context>,
+  transformer: (
+    path: Path,
+    context: Context,
+  ) => Path | ASTNode | null,
   context: Context,
 ) {
   let stack: Stack<Queue<Path>> = new Stack();
@@ -19,7 +22,7 @@ export default async function transform<Context: {}>(
   let transformed = ast;
 
   while (stack.size() > 0) {
-    let queue = stack.pop();
+    let queue: Queue<Path> = stack.pop();
 
     while (queue.size() > 0) {
       let path = queue.dequeue();

@@ -5,11 +5,10 @@ type Matcher<Result> = {
   [key: string]: () => Result,
 };
 
-export default function match<Result>(node: ASTNode, matcher: Matcher<Result>): Result | null {
-  let method = matcher[node.type] || matcher.else;
-  if (typeof method === 'function') {
-    return method();
-  } else {
-    return null;
+export default function match<Result>(nodeType: string, matcher: Matcher<Result>): Result {
+  if (!matcher.else) {
+    throw new Error('Missing else() for matcher');
   }
+  let method = typeof matcher[nodeType] === 'function' ? matcher[nodeType] : matcher.else;
+  return method();
 }

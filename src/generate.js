@@ -6,4 +6,5 @@ export default function generate(
   opts: GeneratorOptions,
 ): { code: string, map: string } {
   // ...
+  return { code: '', map: '' };
 }

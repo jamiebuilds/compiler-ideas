@@ -10,11 +10,11 @@ export default class Queue<T> {
     this.items.push(item);
   }
 
-  dequeue() {
+  dequeue(): T {
     return this.items.shift();
   }
 
-  peek() {
+  peek(): T {
     return this.items[0];
   }
 

@@ -10,7 +10,7 @@ export default class Stack<T> {
     this.items.push(item);
   }
 
-  pop() {
+  pop(): T {
     return this.items.pop();
   }
 

@@ -1,12 +1,12 @@
 // @flow
-import type { ASTNode, Visitor } from './types';
+import type { ASTNode } from './types';
 import Path from './path';
 import Stack from './stack';
 import Queue from './queue';
 
 export default function traverse<Context: {}>(
   ast: ASTNode,
-  visitor: Visitor<Context>,
+  traverser: (path: Path, context: Context) => mixed,
   context: Context,
 ): Context {
   let stack: Stack<Queue<Path>> = new Stack();

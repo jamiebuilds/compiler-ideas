@@ -1,15 +1,19 @@
 // @flow
-import type { ASTNode, Reducer } from './types';
+import type { ASTNode } from './types';
 import { BabelTypeError } from './errors';
 import Path from './path';
 import messages from './messages';
 
 export default function reduce<Context: {}, Result>(
   ast: ASTNode,
-  reducer: Reducer<Context, Result>,
+  reducer: (
+    path: Path,
+    context: $Shape<Context>,
+    reduce: (path: Path, context: $Shape<Context>) => Result,
+  ) => Result,
   context: Context,
 ): Result {
-  function cb(path, context) {
+  function cb(path: Path, context: $Shape<Context>) {
     if (!(path instanceof Path)) {
       throw new BabelTypeError(ast, path.node, messages.needsPath);
     }
