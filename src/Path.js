@@ -1,5 +1,6 @@
 // @flow
 import type { ASTNode } from './types';
+import messages from './messages';
 
 export default class Path {
   node: ASTNode;
@@ -20,7 +21,11 @@ export default class Path {
   }
 
   get(key: string): Path {
-    return new Path(this.node[key], this, key);
+    let value = this.node[key];
+    if (Array.isArray(value)) {
+      console.warn(messages.pathGetOnArray);
+    }
+    return new Path(value, this, key);
   }
 
   getArray(key: string): Array<Path> {
@@ -32,7 +37,7 @@ export default class Path {
     } else if (value == null) {
       return [];
     } else {
-      throw new Error('Called Path#getArray to get a non-array value');
+      throw new Error(messages.calledGetArrayOnNonArray);
     }
   }
 }

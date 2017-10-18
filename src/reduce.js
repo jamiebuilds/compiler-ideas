@@ -15,11 +15,11 @@ export default function reduce<Context: {}, Result>(
 ): Result {
   function cb(path: Path, context: $Shape<Context>) {
     if (!(path instanceof Path)) {
-      throw new BabelTypeError(ast, path.node, messages.needsPath);
+      throw new BabelTypeError(messages.needsPath, ast, path.node);
     }
 
     if (typeof context === 'undefined') {
-      throw new BabelTypeError(ast, path.node, messages.needsContext);
+      throw new BabelTypeError(messages.needsContext, ast, path.node);
     }
 
     return reducer(path, context, cb);

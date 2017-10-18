@@ -21,10 +21,6 @@ const reducer = (path, context, reduce) => match(path.node.type, {
   ExportDefaultDeclaration() {
     // ...
   },
-
-  else() {
-    throw new BabelTypeError(context.ast, path.node, `Missing reducer for ${path.node.type}`);
-  },
 });
 
 export default function getExports(ast: ASTNode) {
