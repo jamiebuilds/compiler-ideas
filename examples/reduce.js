@@ -1,12 +1,12 @@
 // @flow
-import { reduce, match, type ASTNode, BabelTypeError, Path } from '../src/index';
+import { reduce, match, BabelTypeError, Path } from '../src/index';
 
 const reducer = (path, context, reduce) => match(path.node.type, {
   Program() {
     let results = [];
 
     for (let item of path.getArray('body')) {
-      if (path.type === 'ExportNamedDeclaration' || path.type === 'ExportDefaultDeclaration') {
+      if (path.node.type === 'ExportNamedDeclaration' || path.node.type === 'ExportDefaultDeclaration') {
         results = results.concat(reduce(item, context));
       }
     }
@@ -23,6 +23,6 @@ const reducer = (path, context, reduce) => match(path.node.type, {
   },
 });
 
-export default function getExports(ast: ASTNode) {
-  return reduce(ast, reducer, { ast });
+export default function getExports(path: Path, context: {}) {
+  return reduce(path, reducer, context);
 }

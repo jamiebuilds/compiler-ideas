@@ -1,13 +1,16 @@
 // @flow
-import { traverse, match, type ASTNode } from '../src/index';
+import { traverse, match, Path } from '../src/index';
 
 const traverser = (path, context) => match(path.node.type, {
   Identifier() {
     context.ids.push(path.node);
+    return path;
   },
-  else() {}
+  else() {
+    return path;
+  }
 });
 
-export function collectIdentifiers(ast: ASTNode) {
-  return traverse(ast, traverser, { ids: [] }).ids;
+export function collectIdentifiers(path: Path) {
+  return traverse(path, traverser, { ids: [] }).ids;
 }

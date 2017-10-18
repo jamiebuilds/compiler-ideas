@@ -1,18 +1,15 @@
 // @flow
-import type { ASTNode } from './types';
+import type { ASTNode, Visitor } from './types';
 import Path from './path';
 
 export default async function transform<Context: {}>(
-  ast: ASTNode,
-  transformer: (
-    path: Path,
-    context: Context,
-  ) => Path | ASTNode | null,
+  path: Path,
+  visitor: Visitor<Context>,
   context: Context,
 ) {
-  let transformed = ast;
+  let transformed = path;
 
   // ...
 
-  return transformed;
+  return transformed.node;
 }

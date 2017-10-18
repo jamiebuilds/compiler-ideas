@@ -1,5 +1,5 @@
 // @flow
-import { transform, match, type ASTNode } from '../src/index';
+import { transform, match, Path } from '../src/index';
 
 const transformer = (path, context) => match(path.node.type, {
   Identifier() {
@@ -14,6 +14,6 @@ const transformer = (path, context) => match(path.node.type, {
   },
 });
 
-export default function reverseIdentifiers(ast: ASTNode) {
-  return transform(ast, transformer, {});
+export default function reverseIdentifiers(path: Path, context: {}) {
+  return transform(path, transformer, context);
 }

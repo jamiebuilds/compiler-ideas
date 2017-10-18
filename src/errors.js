@@ -1,26 +1,23 @@
 // @flow
-import type { ASTNode } from './types';
+import Path from './Path';
 
-export function buildCodeFrame(ast: ASTNode, node: ASTNode, message: string): string {
+export function buildCodeFrame(path: Path, message: string): string {
   // ...
   return '';
 }
 
 export class BabelError extends Error {
-  ast: ASTNode | null;
-  node: ASTNode | null;
+  path: Path | null;
 
   constructor(
     message: string,
-    ast: ASTNode | null = null,
-    node: ASTNode | null = null,
+    path: Path | null = null,
   ) {
-    if (ast && node) {
-      message = buildCodeFrame(ast, node, message);
+    if (path) {
+      message = buildCodeFrame(path, message);
     }
     super(message);
-    this.ast = ast;
-    this.node = node;
+    this.path = path;
   }
 }
 
